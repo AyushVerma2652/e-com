@@ -1,0 +1,30 @@
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-9">
+            <div class="search-area">
+                
+            </div>
+            <div class="browse-area">
+                <div class="item" *ngFor="let prod of all_products"> 
+                    <mat-card>
+                        <mat-card-content class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                <p class="h3">{{prod.productname}}</p>
+                                <p class="h6 text-muted">in {{prod.category}}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="http://localhost:3000/products/{{prod.image}}">
+                                </div>
+                            </div>
+                            
+                            {{prod.price}}
+                            
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

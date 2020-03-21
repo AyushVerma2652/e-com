@@ -1,0 +1,52 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+        <form [formGroup]="userform" (submit) = "userSubmit(userform.value)">
+            <div class="card">
+                <div class="card-header">
+                    <p class = "h2 text-center " >Sign Up Here</p>
+                </div>
+                <div class="card-body">
+
+                    <mat-form-field appearance="outline" class="col-md">
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="mr. anderson" formControlName="name">
+                        <mat-icon matSuffix>account_circle</mat-icon>
+                        <mat-error *ngIf ="submitted && returnControls().name.errors">Name is required</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="col-md">
+                        <mat-label>User Name</mat-label>
+                        <input matInput placeholder="andrew" formControlName="username">
+                        <mat-error *ngIf ="submitted && returnControls().name.errors">User Name is required</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="col-md">
+                        <mat-label>Password</mat-label>
+                        <input matInput placeholder="****" formControlName="password">
+                        <mat-icon matSuffix>lock</mat-icon>
+                        <mat-error *ngIf ="submitted && returnControls().name.errors">Password is required</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="col-md">
+                        <mat-label>Confirm Password</mat-label>
+                        <input matInput placeholder="****" formControlName="confirm">
+                        <mat-icon matSuffix>lock</mat-icon>
+                        <mat-error *ngIf ="submitted && returnControls().name.errors">Pawword does not match</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="col-md">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="mr. anderson@hmail.com" formControlName="email">
+                        <mat-error *ngIf ="submitted && returnControls().name.errors">Email is required</mat-error>
+                    </mat-form-field>
+
+                    <button class="mt-4 btn-block" mat-raised-button color="primary">Sign Up</button>
+  
+                    
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>

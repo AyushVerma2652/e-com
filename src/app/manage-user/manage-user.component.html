@@ -1,0 +1,98 @@
+<div class="container mt-5">
+    <div class="display-2 text-center">List of users</div>
+
+    <div class="add-form mt-5" *ngIf= "showAddForm">
+        <form [formGroup]="userForm" (ngSubmit)= "onSubmit(userForm.value)">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Add new User</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row mt-3">
+                        <div class="col-md-3"><label class="col-form-label" for="name">Name: </label></div>
+                        <input formControlName="name" id="name" class="form-control col-md-8">
+                    </div>
+    
+                    <div class="row mt-3">
+                        <div class="col-md-3"><label class="col-form-label" for="username">Userame: </label></div>
+                        <input formControlName="username" id="username" class="form-control col-md-8">
+                    </div>
+    
+                    <div class="row mt-3">
+                        <div class="col-md-3"><label class="col-form-label" for="password">Password: </label></div>
+                        <input formControlName="password" id="password" class="form-control col-md-8" type="password">
+                    </div>
+                        
+                    <div class="row mt-3">
+                        <div class="col-md-3"><label class="col-form-label" for="email">Email: </label></div>
+                        <input formControlName="email" id="email" class="form-control col-md-8">
+                    </div>
+    
+                    <div class="row mt-3">
+                        <div class="col-md-3"><label class="col-form-label" for="contact">Contact: </label></div>
+                        <input formControlName="contact" id="contact" class="form-control col-md-8">
+                    </div>
+                    
+    
+                    <button class="btn btn-primary mt-5">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="update-form mt-5" *ngIf= "showEditForm">
+        <form [formGroup]="editForm" (ngSubmit)= "onUpdateSubmit(editForm)">
+            <div class="card"> 
+                <div class="card-header">
+                    <h3 class="card-title">Update User Form</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row mt-3">
+                        <div class="col-md-3"><label class="col-form-label" for="name">Name: </label></div>
+                        <input formControlName="name" id="name" class="form-control col-md-8">
+                    </div>
+    
+                    <div class="row mt-3">
+                        <div class="col-md-3"><label class="col-form-label" for="username">Userame: </label></div>
+                        <input formControlName="username" id="username" class="form-control col-md-8">
+                    </div>
+    
+                    <div class="row mt-3">
+                        <div class="col-md-3"><label class="col-form-label" for="password">Password: </label></div>
+                        <input formControlName="password" id="password" class="form-control col-md-8" type="password">
+                    </div>
+    
+                    <div class="row mt-3">
+                        <div class="col-md-3"><label class="col-form-label" for="email">Email: </label></div>
+                        <input formControlName="email" id="email" class="form-control col-md-8">
+                    </div>
+                    
+    
+                    <button class="btn btn-primary mt-5">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="view-users">
+        <div class="card col-md-8 mt-3" style="margin-left: 20%;" *ngFor= "let user of users">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class="user-body ml-5">{{user.name}}</p>
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <p class="user-body mr-5">{{user.price}}</p>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-outline-danger" (click) = "delete(user._id)">Delete</button>
+                    </div>
+
+                    <div class="col-md-2">
+                        <button class="btn btn-outline-primary" (click) = "editData(user)">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

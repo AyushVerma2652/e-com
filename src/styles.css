@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+html{
+    height: 100%;
+}
+.bg-rg{
+    background-image: url('../assets//watchbg.jpg');
+    background-repeat: no-repeat;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.bg-p{
+    background-image: url('assets//watchbg.jpg');
+    /* background-repeat: no-repeat; */
+    background-position: center;
+}
