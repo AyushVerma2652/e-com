@@ -1,23 +1,107 @@
-<nav class="navbar navbar-expand-lg navbar-dark primary-color bg-dark">
-    <a class="navbar-brand" href="#">Ecom</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/register']" routerLinkActive="router-link-active" >Register <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/admin']" routerLinkActive="router-link-active" >Admin</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/product']" routerLinkActive="router-link-active" >Add Product</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/login']" routerLinkActive="router-link-active" >Login</a>
-        </li>
-      </ul>
-    </div>
+
+
+<!-- <nav class="navbar navbar-expand-lg navbar-dark primary-color bg-dark " >
+  <a class="navbar-brand" href="#" style="font-family:monospace;" [routerLink]="['/home']" routerLinkActive="router-link-active" >ALLWatch</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/register']" routerLinkActive="router-link-active" >Register <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/admin']" routerLinkActive="router-link-active" >Admin</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/product']" routerLinkActive="router-link-active" >Add Product</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/login']" routerLinkActive="router-link-active" >Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/dash']" routerLinkActive="router-link-active" >User Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active" >Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/browse']" routerLinkActive="router-link-active" >Browse</a>
+      </li>
+      <li class="nav-item">
+        <a  class="nav-link fa fa-shopping-cart"  aria-hidden="true" [routerLink]="['/cart']" routerLinkActive="router-link-active" ></a>  
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"  (click)="userlogout()" >Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav> -->
+
+
+  
+
+
+
+
+
+ <!-- <header > 
+  <h1 class="logo" [routerLink]="['/home']" routerLinkActive="router-link-active" >ALLWatch</h1>
+  <nav>
+    <ul class="nav__links">
+      <li><a [routerLink]="['/home']" routerLinkActive="router-link-active"  href="#">Home</a></li>
+      <li><a [routerLink]="['/browse']" routerLinkActive="router-link-active"  href="#">Shop</a></li>
+      <li><a [routerLink]="['/login']" routerLinkActive="router-link-active"  href="#">Login</a></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Account
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><a class="dropdown-item"  (click)="userlogout()" >Logout</a></li>
+        </div>
+      </li>
+      <li><a [routerLink]="['/contact']" routerLinkActive="router-link-active"  href="#">Contact</a></li>
+      <li><a [routerLink]="['/cart']" routerLinkActive="router-link-active"  href=""><i class="fa fa-shopping-cart"></i></a></li>
+    </ul>
   </nav>
+ </header> -->
+
+
+
+ <nav  class="navbar navbar-expand-lg navbar-dark primary-color bg-dark" >
+  <a class="navbar-brand" style="padding-left: 30px;" href="#">ALLWatch</a>
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav ml-auto" >
+      <li class="nav-item active " style="margin-right: 20px;">
+        <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active"  href="#">Home </a>
+      </li>
+      <li class="nav-item" style="margin-right: 20px; ">
+        <a class="nav-link" [routerLink]="['/browse']" routerLinkActive="router-link-active"  href="#">Shop</a>
+      </li>
+      <li *ngIf="!userservice.loggedin" class="nav-item" style="margin-right: 20px;">
+        <a class="nav-link" [routerLink]="['/login']" routerLinkActive="router-link-active"  href="#">Login</a>
+      </li>
+      <li class="nav-item dropdown" *ngIf="userservice.loggedin" style="margin-right: 20px;">
+        <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Account
+        </a>
+        <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" [routerLink]="['/dash']" routerLinkActive="router-link-active"  href="#">Profile</a>
+          <a class="dropdown-item" (click)="userlogout()"  >Log Out</a>
+        </div>
+      </li>
+      <li  class="nav-item" style="margin-right: 20px;">
+        <a class="nav-link" [routerLink]="['/contact']" routerLinkActive="router-link-active"  href="#">Contact Us</a>
+      </li>
+      <li class="low" style="margin-top: 8px; font-size: medium;">
+        <a [routerLink]="['/cart']" routerLinkActive="router-link-active" ><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+

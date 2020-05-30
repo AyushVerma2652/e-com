@@ -1,0 +1,39 @@
+<mat-card>
+    <mat-card-content>
+        <mat-accordion>
+          <h1 class="text-center">User Orders</h1>
+            <mat-expansion-panel *ngFor="let order of orders">
+                <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <p class="mx-auto">{{order.user.name}}</p>
+                </mat-panel-title>
+                  <mat-panel-description>
+                      Booked {{order.created | date }}
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p style="color: rgba(0, 0, 0, 0.678);">
+                    <mat-card *ngFor="let product of order.cart">
+                      <div class="row">
+                   <div class="col-md-3">
+                    <h3>Name :{{product.data.productname}}</h3>
+                    <h3>Quantity : {{product.quantity}}</h3>
+                    <h3>Price : Rs {{product.data.price}}</h3>
+                  </div>
+                  <div class="col-md-3">                    
+                    <img [src]="'http://localhost:3000/products/'+product.data.images[0]" style="height: 9rem;">
+                  </div>                  
+                  <div>
+                    <h3>{{order.user.address[0].house}}</h3>
+                    <h3>{{order.user.address[0].area}}</h3>
+                    <h3>{{order.user.address[0].city}}</h3>
+                    <h3>Contact Number:{{order.user.phone}}</h3>
+                  </div>
+                </div>
+
+                    </mat-card>
+                  </p> 
+                 
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-card-content>
+</mat-card>

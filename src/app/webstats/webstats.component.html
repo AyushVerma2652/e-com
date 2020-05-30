@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <div class="row">
+         <div class="col-md-4">
+              <mat-card class="reg">
+                   <mat-card-content class="card-body">
+                        <p class="h2 text-center">Registrations till Date</p>
+                        <hr>
+                        <p class="display-4 text-center">{{users.length}}</p>
+                   </mat-card-content>
+              </mat-card>
+         </div>
+ 
+         <div class="col-md-4">
+              <mat-card class="reg">
+                   <mat-card-content class="card-body">
+                        <p class="h2 text-center">Orders till Date</p>
+                        <hr>
+                        <p class="display-4 text-center">{{orders.length}}</p>
+                   </mat-card-content>
+              </mat-card>
+         </div>
+ 
+         <!-- <div class="col-md-4">
+              <mat-card class="reg">
+                   <mat-card-content class="card-body">
+                        <p class="h2 text-center">Total Locations</p>
+                        <hr>
+                        
+                   </mat-card-content>
+              </mat-card>
+         </div> -->
+    </div>
+ 
+    <mat-card class="mt-5">
+         <mat-card-content>
+              <button mat-raised-button (click)="viewUsers()">Registrations</button>
+              <button mat-raised-button color="primary" (click)="viewOrders()">Orders</button>
+              <div class="chart" id="regByDate" style="width: 50rem;height: 30rem;"></div>
+         </mat-card-content>
+    </mat-card>
+</div>

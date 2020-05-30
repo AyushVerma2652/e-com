@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-manage-user',
@@ -12,6 +12,9 @@ export class ManageUserComponent implements OnInit {
   users;
   editForm;
   showEditForm = false;
+  showAddForm;
+  userform;
+  
   constructor(private userService: UserService, private formBuilder: FormBuilder) { }
 
   
@@ -19,7 +22,49 @@ export class ManageUserComponent implements OnInit {
 
     
     this.getData();
+    document.body.classList.add('bg-rg')
+    this.userform= this.formBuilder.group({
+      name : ["", [Validators.required, Validators.maxLength(20)]],
+      username : ["", Validators.required],
+      password : ["", [Validators.required, Validators.minLength(5)]],
+      confirm : [""],
+      email : ["", Validators.required]
+    },{ validator : this.matchPassword('password', 'confirm')}
+    )
+  
+
   }
+
+  matchPassword(password, confirm_pass){
+    return (userform) =>{
+      let passControl = userform.controls[password];
+      let confirmControl = userform.controls[confirm_pass];
+
+      if(passControl.value !== confirmControl.value){
+        confirmControl.setErrors({match: true})
+      }else{
+        confirmControl.setErrors(null)
+      }
+    }
+    //return false
+  }
+
+  onSubmit(formdata){
+    
+    console.log(this.userform.controls);
+    if(!this.userform.valid){
+      //alert("Invalid form")
+      return;
+    }
+    
+    this.userService.addUser(formdata).subscribe(response=> {
+      console.log(response);
+      this.userform.reset();
+      
+    });
+
+  }
+
 
   getData(){
     this.userService.getAllUsers().subscribe( (users)=> {
@@ -53,6 +98,10 @@ export class ManageUserComponent implements OnInit {
   editData(user){
     this.initForm(user);
     this.showEditForm = true;
+  }
+
+  returnControls(){
+    return this.userform.controls;
   }
 
 }

@@ -11,7 +11,12 @@ import Swal from 'sweetalert2';``
 export class RegisterComponent implements OnInit {
   
   userform;
-  submitted=false
+  submitted=false;
+  hide = true;
+  selectedFile;
+  imgURL;
+  message;
+  avatarName;
   constructor(private formBuilder: FormBuilder, private userService: UserService) { }
   
 
@@ -22,7 +27,11 @@ export class RegisterComponent implements OnInit {
       username : ["", Validators.required],
       password : ["", [Validators.required, Validators.minLength(5)]],
       confirm : [""],
-      email : ["", Validators.required]
+      email : ["", Validators.required],
+      phone : ["", [Validators.required, Validators.minLength(10)]],
+      age : ["", Validators.required],
+      admin:false,
+      created : new Date,
     },{ validator : this.matchPassword('password', 'confirm')}
     )
   
@@ -48,11 +57,27 @@ export class RegisterComponent implements OnInit {
       return;
     }
     
-    this.userService.addUser(formdata).subscribe(response=> {
-      console.log(response);
-      this.userform.reset();
-      this.submitted = false;
-    });
+    
+    this.userService.getUserByUsername(formdata.username).subscribe( data => {
+      if(!data){
+      formdata.image= this.avatarName;
+      this.userService.addUser(formdata).subscribe(response=> {
+        console.log(response);
+        this.userform.reset();
+        this.submitted = false;
+      });
+       
+      } else{
+      Swal.fire({
+      icon : 'error' ,
+      title: 'Oops!',
+      text: 'Username already exists!' ,
+      })
+      }
+       
+      })
+    
+
 
   }
   returnControls(){
@@ -61,5 +86,50 @@ export class RegisterComponent implements OnInit {
   ngOnDestroy(){
     document.body.classList.remove('bg-rg')
   }
+
+
+
+
+  uploadImage(event)
+  {
+    let files = event.target.files;
+    if(files.length===0)
+      return;
+ 
+    var mimeType=files[0].type;
+    if(mimeType.match(/image\/*/)==null)
+    { 
+      Swal.fire("Images Only");
+      return;
+    }
+    this.preview(event.target.files)
+    let formData=new FormData();
+    this.selectedFile=files[0];
+    this.avatarName=this.selectedFile.name;
+    console.log(this.avatarName);
+    formData.append('image', this.selectedFile, this.selectedFile.name);
+    this.userService.uploadImage(formData).subscribe(response=>
+      {
+      console.log(response['message'])
+      })
+  }  
+  preview(files) {
+    if (files.length === 0)
+      return;
+ 
+    var mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.message = "Only images are supported.";
+      return;
+    }
+ 
+    var reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => { 
+      this.imgURL = reader.result;
+    }
+  }
+
+
 
 }

@@ -1,52 +1,78 @@
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-        <form [formGroup]="userform" (submit) = "userSubmit(userform.value)">
-            <div class="card">
-                <div class="card-header">
-                    <p class = "h2 text-center " >Sign Up Here</p>
-                </div>
-                <div class="card-body">
-
-                    <mat-form-field appearance="outline" class="col-md">
-                        <mat-label>Name</mat-label>
-                        <input matInput placeholder="mr. anderson" formControlName="name">
-                        <mat-icon matSuffix>account_circle</mat-icon>
-                        <mat-error *ngIf ="submitted && returnControls().name.errors">Name is required</mat-error>
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline" class="col-md">
-                        <mat-label>User Name</mat-label>
-                        <input matInput placeholder="andrew" formControlName="username">
-                        <mat-error *ngIf ="submitted && returnControls().name.errors">User Name is required</mat-error>
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline" class="col-md">
-                        <mat-label>Password</mat-label>
-                        <input matInput placeholder="****" formControlName="password">
-                        <mat-icon matSuffix>lock</mat-icon>
-                        <mat-error *ngIf ="submitted && returnControls().name.errors">Password is required</mat-error>
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline" class="col-md">
-                        <mat-label>Confirm Password</mat-label>
-                        <input matInput placeholder="****" formControlName="confirm">
-                        <mat-icon matSuffix>lock</mat-icon>
-                        <mat-error *ngIf ="submitted && returnControls().name.errors">Pawword does not match</mat-error>
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline" class="col-md">
-                        <mat-label>Email</mat-label>
-                        <input matInput placeholder="mr. anderson@hmail.com" formControlName="email">
-                        <mat-error *ngIf ="submitted && returnControls().name.errors">Email is required</mat-error>
-                    </mat-form-field>
-
-                    <button class="mt-4 btn-block" mat-raised-button color="primary">Sign Up</button>
+<div class="container">
+      <div class="register">
+          <div class="container">
+              <i class="fa fa-user-plus fa-5x" aria-hidden="true"></i>
+              <h2>Hello,friend!</h2>
+              <p>Enter your personal details and start journey with us</p>
+              <p>Already a user? </p>
+              <button [routerLink]="['/login']" routerLinkActive="router-link-active" >Login <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
+          </div>
+      </div> 
+      <div class="login">
+         <div class="container">
+           <form [formGroup]="userform" (submit)="userSubmit(userform.value)">
+              <h1>Sign Up</h1>
+              <mat-form-field  style="font-size: small;" class="col-md-10">
+                  <mat-label>Name</mat-label>
+                  <input matInput placeholder="Mr. Anderson" formControlName="name">
+                  <mat-error *ngIf="returnControls().name.errors">Name is Required</mat-error>
+            </mat-form-field>
   
-                    
-                </div>
-            </div>
-        </form>
-        </div>
+            <mat-form-field  style="font-size: small;" class="col-md-10">
+                  <mat-label>Username</mat-label>
+                  <input matInput placeholder="Mr. Anderson" formControlName="username">
+                  <mat-error *ngIf="returnControls().username.errors">Username is Required</mat-error>
+            </mat-form-field>
+  
+            <mat-form-field  style="font-size: small;" class="col-md-5">
+                  <mat-label>Password</mat-label>
+                  <input matInput placeholder="****" formControlName="password" [type]="hide ? 'password' : 'text'">
+                  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                  <mat-error *ngIf="returnControls().password.errors">Password is Required</mat-error>
+            </mat-form-field>
+  
+            <mat-form-field  style="font-size: small;" class="col-md-5">
+                  <mat-label>Confirm</mat-label>
+                  <input matInput placeholder="****" formControlName="confirm" [type]="hide ? 'password' : 'text'">
+                  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                  <mat-error *ngIf="returnControls().confirm.errors">Passwords must match</mat-error>
+            </mat-form-field>
+  
+            <mat-form-field style="font-size: small;" class="col-md-10">
+                  <mat-label>Email</mat-label>
+                  <input matInput placeholder="Mr. Anderson@gmail.com" formControlName="email">
+                  <mat-error *ngIf="returnControls().email.errors">Email is Required</mat-error>
+            </mat-form-field>
+  
+            <mat-form-field  style="font-size: small;" class="col-md-10">
+              <mat-label>Phone Number</mat-label>
+              <input matInput placeholder="7648129035" formControlName="phone">
+              <mat-error *ngIf="returnControls().phone.errors">Your Number is Required</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field  style="font-size: small;" class="col-md-10">
+              <mat-label>Age</mat-label>
+              <input matInput placeholder="20" formControlName="age">
+              <mat-error *ngIf="returnControls().age.errors">Age is Required</mat-error>
+        </mat-form-field>
+        <input type="file" (change)="uploadImage($event)">
+         <img style="height: 2rem;" [src]="imgURL" >
+  
+  
+              <button>Sign Up</button>
+            </form>
+             
+               
+         </div>
+      </div>
+       
     </div>
-</div>
+    
+    
+    
+    
+    

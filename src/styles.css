@@ -1,16 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+
 html{
     height: 100%;
 }
-.bg-rg{
-    background-image: url('../assets//watchbg.jpg');
-    background-repeat: no-repeat;
-}
+
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .bg-p{
-    background-image: url('assets//watchbg.jpg');
-    /* background-repeat: no-repeat; */
-    background-position: center;
+    background-color: #e3efe8;
+background-image: linear-gradient(315deg, #e3efe8 0%, #96a7cf 74%);
+} 
+.bg-lg{
+    background-color: #7a7adb;
+background-image: linear-gradient(315deg, #7a7adb 0%, #170e13 74%);
+
+
+    
+
 }
+/* .detail{
+   
+    background-color: #f3f4f7;
+background-image: linear-gradient(315deg, #f3f4f7 0%, #caccd1 74%);
+background-repeat: no-repeat;
+} */
+.bg-rg{
+    background-color: #923cb5;
+    background-image: linear-gradient(147deg, #923cb5 0%, #000000 74%);
+}
+
+

@@ -1,30 +1,68 @@
-<div class="container-fluid mt-5">
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-9">
-            <div class="search-area">
-                
-            </div>
-            <div class="browse-area">
-                <div class="item" *ngFor="let prod of all_products"> 
-                    <mat-card>
-                        <mat-card-content class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                <p class="h3">{{prod.productname}}</p>
-                                <p class="h6 text-muted">in {{prod.category}}</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <img src="http://localhost:3000/products/{{prod.image}}">
-                                </div>
-                            </div>
-                            
-                            {{prod.price}}
-                            
-                        </mat-card-content>
-                    </mat-card>
-                </div>
+  <!-- <div class="row">
+    <img src="../../assets/shop.png" style="width:100%; height: 20rem;">
+  </div> -->
+
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <div class="input-group">
+            <input class="form-control form-control-lg col-md-5" style="align-items: center;" #query>
+            <div class="input-group-append">
+                <button class="btn btn-primary btn-lg" (click)="search(query.value)">Search</button>
             </div>
         </div>
     </div>
 </div>
+
+  <div class="container mt-5" *ngIf="all_products">
+   
+    <div class="row" >
+
+      <div class="col-lg-2">
+
+        <h3 class="my-4">Filters</h3>
+        <div class="list-group" >
+          <a type="button" (click)="searchbycategory('Smart')" class="list-group-item">Smart</a>
+          <a type="button" (click)="searchbycategory('Analog')" class="list-group-item">Analog</a>
+          <a type="button" (click)="searchbycategory('Fitband')" class="list-group-item">Fit Bands</a>
+          <a type="button" (click)="searchbycategory('Accesories')" class="list-group-item">Accesories</a>
+          <a type="button" (click)="sort()" class="list-group-item">Sort A-Z</a>
+          <a type="button" (click)="sort(true)" class="list-group-item">Sort Z-A</a>
+          <a type="button" (click)="sortprice()" class="list-group-item">Sort Price</a>
+        </div>
+
+      </div>
+      
+
+      <div class="col-lg-10" >
+        
+        <div class="row" >
+
+          <div class="col-lg-4 col-md-6 mb-4" *ngFor="let prod of all_products.slice(start,end)" >
+            <div class="card shadow  mb-5 rounded" >
+              <div class="fx5">
+                <a href="#">
+                <div class="item col4">
+              <img class="transition img-responsive" style="height: 20rem; width: 17.9rem;" [src]="'http://localhost:3000/products/'+prod.images[0]"> 
+              <p><i  class="fa fa-shopping-cart" (click)="addtocart(prod)" type="button" aria-hidden="true"></i></p>                                         
+                </div>
+                </a>
+              </div>          
+              <div class="card-body">
+                <h4 class="card-title">
+                  <h5 class="font-italic" style="color: brown; line-height: 3px;">{{prod.category}}</h5>              
+                  <h3  style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"   [routerLink]="['/details', prod._id]" routerLinkActive="router-link-active">{{prod.productname}}</h3>         
+                </h4>
+                <h4 style="font-size: large; font-weight: 500;">Rs{{prod.price}}</h4>                
+              </div>           
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <button color="primary" (click)="prev()" mat-stroked-button><fa-icon [icon]="left"></fa-icon></button>
+      <button color="primary" mat-button>{{start+1}} - {{end}} of {{all_products.length}}</button>
+      <button color="primary" (click)="next(all_products)" mat-stroked-button><fa-icon [icon]="right"></fa-icon></button>
+    </div>
+  </div>
+

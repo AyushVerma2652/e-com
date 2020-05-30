@@ -1,0 +1,71 @@
+
+<div class="row first">
+  <div class="text-block">
+    <img [src]= " 'http://localhost:3000/products/'+user.image" class="rounded-circle" height="80px">
+    <h1 class="font-italic">Hello!</h1>
+    <p class="h3 font-italic">{{user.name}}</p>
+    <p class="h4">{{user.email}}</p>
+  </div>
+  </div>
+  <div class="container-fluid">
+      <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="row justify-content-center">
+                    <div class="col-md-3" style="border-right: 1px solid rgb(184 , 184 ,184);height:300px">
+                       <mat-card class="col-md-11 mt-5 ">
+                           <mat-card-content class="card-body">                            
+                              <button class="btn btn-outline btn-block mt-2" style="background-color: #7a7adb;" (click)="toggleuserdetails()">Update Profile</button>
+                              <button class="btn btn-outline btn-block mt-2" style="background-color: #7a7adb;" (click)="togglemanageaddress()">User Address</button>
+                              <button class="btn btn-outline btn-block mt-2" style="background-color: #7a7adb;"  (click)="togglemanageorders()">User Orders</button>
+                            
+                           </mat-card-content>
+                       </mat-card>
+                  
+                  </div>
+                    <div class="col-md-9">
+                      <mat-card class="col-md-11 mt-5" *ngIf="showuserdetails">
+  
+                          <mat-card-content class="card-body">
+  
+                              <form [formGroup]="userform" (submit)="userSubmit(userform.value)">
+                                  <mat-form-field appearance="outline" style="font-size: small;" class="col-md-10">
+                                        <mat-label>Name</mat-label>
+                                        <input matInput placeholder="Mr. Anderson" formControlName="name">
+                                        <mat-error *ngIf="returnControls().name.errors">Name is Required</mat-error>
+                                  </mat-form-field>
+          
+                                  <mat-form-field appearance="outline" style="font-size: small;" class="col-md-10">
+                                        <mat-label>Username</mat-label>
+                                        <input matInput placeholder="Mr. Anderson" formControlName="username">
+                                        <mat-error *ngIf="returnControls().username.errors">Username is Required</mat-error>
+                                  </mat-form-field>
+          
+                                  <mat-form-field appearance="outline" style="font-size: small;" class="col-md-10">
+                                        <mat-label>Email</mat-label>
+                                        <input matInput placeholder="Mr. Anderson" formControlName="email">
+                                        <mat-error *ngIf="returnControls().email.errors">Email is Required</mat-error>
+                                  </mat-form-field>
+  
+                                  <mat-form-field appearance="outline" style="font-size: small;" class="col-md-10">
+                                      <mat-label>Contact</mat-label>
+                                      <input matInput placeholder="Mr. Anderson" formControlName="contact">
+                                      <mat-error *ngIf="returnControls().email.errors">Email is Required</mat-error>
+                                </mat-form-field>
+  
+                                  <div class="col-md-10">
+                                        <button mat-raised-button color="warn" class="ml-auto mt-3">Sign Up </button>
+                                  </div>
+                            </form>
+                          </mat-card-content>
+                      </mat-card>
+                      <app-manage-address *ngIf="showmanageaddress"></app-manage-address>
+                      <app-userorders *ngIf="showmanageorders"></app-userorders>
+                    </div>
+                </div>
+            </div>
+      </div>
+  </div> 
+
+
+
+

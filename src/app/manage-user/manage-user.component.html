@@ -2,7 +2,7 @@
     <div class="display-2 text-center">List of users</div>
 
     <div class="add-form mt-5" *ngIf= "showAddForm">
-        <form [formGroup]="userForm" (ngSubmit)= "onSubmit(userForm.value)">
+        <form [formGroup]="userform" (ngSubmit)= "onSubmit(userform.value)">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Add new User</h3>
@@ -96,3 +96,4 @@
         </div>
     </div>
 </div>
+

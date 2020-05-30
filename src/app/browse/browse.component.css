@@ -1,0 +1,33 @@
+
+.card{
+  height: 29rem;
+  width: 18rem;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Rozha+One');
+@import url('https://fonts.googleapis.com/css?family=Raleway|Rozha+One');
+
+body {background-color: #a4a4a4;}
+.col4 {width: 33.33333333%; float: left; position: relative;}
+.transition {-webkit-transition: all .5s ease; -moz-transition: all .5s ease; -o-transition: all .5s ease;  transition: all .5s ease;}
+body .container {width: 70%; margin: 0 auto;}
+.fx1 .item, .fx2 .item, .fx3 .item, .fx4 .item, .fx5 .item {margin:  0;}
+
+/* active on focus for accessibility tab navigation */
+
+.fx5 .item {padding: 0;}
+.fx5 .item img {padding: 0 !important; display: block; max-width: 17.9rem; height: 21rem;}
+.fx5 a:hover .item img, .fx5 a:focus .item img {opacity: 0.8;}
+.fx5 h4, .fx5 p {-webkit-transition: all .5s ease-out; -moz-transition: all .5s ease-out; -o-transition: all .5s ease-out;  transition: all .5s ease-out;} 
+.fx5 a .item h4 {font-family: 'Raleway', sans-serif; font-size: 16px; position: absolute; color:#fff; text-transform: uppercase; letter-spacing: 2px; background-color: #b5b5b5; padding: 5px 10px; position: absolute; bottom:10%; left: 0%; opacity: 0;}
+.fx5 a:hover .item h4, .fx5 a:focus .item h4  {opacity: 1; left: 10%;}
+.fx5 a .item p {font-family: 'Raleway', sans-serif; font-size: 22px; position: absolute; color:#fff; text-transform: uppercase; letter-spacing: 2px; background-color: #b5b5b5; padding: 5px 10px; position: absolute; bottom:7%; left: 0%; opacity: 0;}
+.fx5 a:hover .item p, .fx5 a:focus .item p {opacity: 1; left: 10%;}
+
+@media screen and (max-width: 991px) {
+.col4 {width: 50%;}
+}   
+
+@media screen and (max-width: 580px) {
+.col4 {width: 100%;}
+} 

@@ -1,0 +1,57 @@
+<div class="row first">
+<div class="text-box"> 
+    <img src= "user.avatar" class="rounded-circle" height="100px">
+            <p class="h3">{{admin.name}}</p>
+             <p class="h4">{{admin.email}}</p>
+</div>
+</div>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+    <div class="col-md">
+    <div class="row justify-content-center">
+    <div class="col-md-4" style="border-right: 1px solid rgb(175, 169, 169); height: 500px;">
+
+    <mat-card class="col-md-11 mt-5">
+         <mat-card-content class="card-body">
+            <!-- <img src= "user.avatar" class="rounded-circle" height="100px">
+            <p class="h3">{{admin.name}}</p>
+             <p class="h4">{{admin.email}}</p> -->              
+               <button class="btn btn" style="background-color: #4063bbbe;" (click)="toggleManageUser()">Manage User</button>
+                <button class="btn btn" style="background-color: #4063bbbe;" (click)="toggleShowOrder()">Show Orders</button>
+                <button class="btn btn" style="background-color: #4063bbbe;" (click)="togglestats()">Show Stats</button>   
+         </mat-card-content>   
+    </mat-card>
+    </div>
+    
+    <div class="col-md mt-5">
+    <mat-card *ngIf="showmanageuser"> 
+     <mat-card-content>
+         <div class="card-body">
+             <p class="h3">Registered Users</p>
+             <hr>
+         </div>
+         <mat-accordion>
+             <mat-expansion-panel *ngFor="let user of users">
+                 <mat-expansion-panel-header>
+                 <mat-panel-title>
+                     <h3>{{user.name}}</h3>
+                 </mat-panel-title>
+                 <mat-panel-description>
+                     {{user.email}}
+                 </mat-panel-description>
+                 </mat-expansion-panel-header>
+                 <hr>
+                 <p>Mobile : {{user.phone}}</p>
+                 
+             </mat-expansion-panel>
+         </mat-accordion>
+     </mat-card-content>
+ </mat-card>
+ <app-webstats  [users]="users" [orders]="users" *ngIf="showstats && users && orders"></app-webstats>
+ <app-manage-orders *ngIf="showorders"></app-manage-orders>
+    
+    </div>
+    </div>
+    </div>
+   </div>
+   </div>

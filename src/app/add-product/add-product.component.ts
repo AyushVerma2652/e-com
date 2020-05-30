@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ProductService } from '../product.service';
 
+import { faBoxOpen, faRupeeSign, faTrashAlt, faDice } from '@fortawesome/free-solid-svg-icons';
+import { CartService } from '../cart.service';
+
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -11,9 +14,17 @@ export class AddProductComponent implements OnInit {
 
   productform;
   message;
-  selectedFile;
-  prodImg;
+  //selectedFile;
+  prodImgs = [];
   imgURL;
+  description= [];
+
+  delete = faTrashAlt;
+  box = faBoxOpen;
+  dice = faDice;
+  money = faRupeeSign;
+ 
+
   constructor(private fb : FormBuilder, private productService: ProductService) { }
 
   ngOnInit() {
@@ -30,11 +41,20 @@ export class AddProductComponent implements OnInit {
       productname: '',
       category:'',
       price: '', 
+      look:'',
+      brand:'',
+      subcategory:'',
+      details:'',
     })
   }
 
   userSubmit(formdata){
-    formdata.image = this.prodImg;
+    if(this.productform.invalid){
+      alert('invalid form')
+      return;
+    }
+    formdata.description = this.description;
+    formdata.images = this.prodImgs;
   console.log(formdata)
   this.productService.addproductdetail(formdata).subscribe((response) => {
     console.log(response);
@@ -43,15 +63,30 @@ export class AddProductComponent implements OnInit {
   }
 
   onFileChange(event){
-    let formdata = new FormData();
-    this.selectedFile = event.target.files[0];
-    this.prodImg = this.selectedFile.name;
-    this.preview(event.target.files);
-    formdata.append('image', this.selectedFile, this.selectedFile.name);
+    
+   // this.selectedFile = event.target.files[0];
+    let selectedFiles = [];
+    for (let file of event.target.files){
+      let formdata = new FormData();
+      this.prodImgs.push(file.name)
+      this.preview(event.target.files);
+    
+    formdata.append('image', file, file.name);
     this.productService.uploadImage(formdata).subscribe(response=>{
       console.log(response);
     });
   }
+  }
+
+  addDescription(){
+    this.description.push(['', '']);
+    console.log(this.description);
+  }
+
+  removeDescription(index){
+    this.description.splice(index, 1);
+  }
+
 
   preview(files){
     if(files.lenght===0)
@@ -71,5 +106,10 @@ export class AddProductComponent implements OnInit {
   }
 
 }
+getControl(){
+  return this.productform.controls;
+}
+
+
 
 }
